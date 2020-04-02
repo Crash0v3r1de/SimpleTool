@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{79DA606F-E5C2-40E6-ADC4-D0A9757A825E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SimpleTool</RootNamespace>
+    <AssemblyName>SimpleTool</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configs\ClientConfig.cs" />
+    <Compile Include="Configs\ClientConfigDeSerial.cs" />
+    <Compile Include="Configs\ConfigIO.cs" />
+    <Compile Include="Encryption\RSAHandler.cs" />
+    <Compile Include="Encryption\XorHandler.cs" />
+    <Compile Include="Enums\DataSize.cs" />
+    <Compile Include="Enums\LogType.cs" />
+    <Compile Include="Enums\OnlineInfo.cs" />
+    <Compile Include="Enums\WorkType.cs" />
+    <Compile Include="Lists\AuthSteps.cs" />
+    <Compile Include="Lists\EncryptionKeys.cs" />
+    <Compile Include="Lists\Work.cs" />
+    <Compile Include="mainFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mainFrm.Designer.cs">
+      <DependentUpon>mainFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lists\Slave.cs" />
+    <Compile Include="Network\Auth\ClientAuth.cs" />
+    <Compile Include="Network\ClientHandler.cs" />
+    <Compile Include="Network\Listener.cs" />
+    <Compile Include="Network\NetworkHandler.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Configs\StaticKeys.cs" />
+    <Compile Include="ThreadTools\ThreadStatus.cs" />
+    <Compile Include="Tools\AuthSteps.cs" />
+    <Compile Include="Tools\EncodingTools.cs" />
+    <Compile Include="Tools\ClientTools.cs" />
+    <Compile Include="Tools\ConfigHandler.cs" />
+    <Compile Include="Tools\CryptoTool.cs" />
+    <Compile Include="Tools\FunctionHandler.cs" />
+    <Compile Include="Tools\GeoIP.cs" />
+    <Compile Include="Tools\Logger.cs" />
+    <Compile Include="Tools\Rando.cs" />
+    <Compile Include="ToolWindows\AllClientWorkUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolWindows\AllClientWorkUI.Designer.cs">
+      <DependentUpon>AllClientWorkUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolWindows\GlobalWorkUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolWindows\GlobalWorkUI.Designer.cs">
+      <DependentUpon>GlobalWorkUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolWindows\InitialSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolWindows\InitialSetup.Designer.cs">
+      <DependentUpon>InitialSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolWindows\KeyGeneration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolWindows\KeyGeneration.Designer.cs">
+      <DependentUpon>KeyGeneration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolWindows\KeyWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolWindows\KeyWindow.Designer.cs">
+      <DependentUpon>KeyWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ToolWindows\PluginUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolWindows\PluginUI.Designer.cs">
+      <DependentUpon>PluginUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Workers\WorkQueue.cs" />
+    <EmbeddedResource Include="mainFrm.resx">
+      <DependentUpon>mainFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="ToolWindows\AllClientWorkUI.resx">
+      <DependentUpon>AllClientWorkUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolWindows\GlobalWorkUI.resx">
+      <DependentUpon>GlobalWorkUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolWindows\InitialSetup.resx">
+      <DependentUpon>InitialSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolWindows\KeyGeneration.resx">
+      <DependentUpon>KeyGeneration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolWindows\KeyWindow.resx">
+      <DependentUpon>KeyWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolWindows\PluginUI.resx">
+      <DependentUpon>PluginUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Logs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icons\Power.png" />
+    <None Include="Icons\monitor.png" />
+    <None Include="Icons\plugin-icon-26.jpg" />
+    <Content Include="Readme and Info.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
