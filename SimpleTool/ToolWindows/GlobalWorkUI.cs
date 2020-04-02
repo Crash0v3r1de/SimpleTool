@@ -31,17 +31,45 @@ namespace SimpleTool.ToolWindows
         {
             while (continueUpdate)
             {
-                for (int x = 0; x < WorkQueue.JobQueue.Count; x++)
+                foreach (var work in WorkQueue.JobQueue)
                 {
-                    if (WorkQueue.JobQueue[x].ClientID.Contains("ALL"))
+
+                    try
                     {
-                        AddActiveItem(WorkQueue.JobQueue[x]);
+                        if (work.ClientID.Contains("ALL") & work.ClientID != null)
+                        {
+                            AddActiveItem(work);
+                        }
+                        else if (!work.ClientID.Contains("ALL") & work.ClientID != null)
+                        {
+                            AddOtherItem(work);
+                        }
                     }
-                    else if(!WorkQueue.JobQueue[x].ClientID.Contains("ALL"))
+                    catch (Exception ex)
                     {
-                        AddOtherItem(WorkQueue.JobQueue[x]);
+                        Debug.WriteLine("ERROR UPDATING GLOBAL WORK LIST!");
                     }
+
                 }
+
+                //for (int x = 0; x < WorkQueue.JobQueue.Count; x++)
+                //{
+                //    try
+                //    {
+                //        if (WorkQueue.JobQueue[x].ClientID.Contains("ALL")& WorkQueue.JobQueue[x].ClientID!=null)
+                //        {
+                //            AddActiveItem(WorkQueue.JobQueue[x]);
+                //        }
+                //        else if (!WorkQueue.JobQueue[x].ClientID.Contains("ALL") & WorkQueue.JobQueue[x].ClientID != null)
+                //        {
+                //            AddOtherItem(WorkQueue.JobQueue[x]);
+                //        }
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        Debug.WriteLine("ERROR UPDATING GLOBAL WORK LIST!");
+                //    }
+                //}
                 Thread.Sleep(900);
             }
             Debug.WriteLine("Queue refresh refresh STOPPED!");

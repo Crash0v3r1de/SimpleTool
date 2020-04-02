@@ -45,6 +45,7 @@ namespace SimpleTool.Workers
         {
             if (!JobQueue.Contains(job))
             {
+                if(JobQueue == null) JobQueue = new List<Work>();
                 JobQueue.Add(job);
             }
             else

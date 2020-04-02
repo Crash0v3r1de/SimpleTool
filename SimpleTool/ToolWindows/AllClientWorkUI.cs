@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SimpleTool.Enums;
+using SimpleTool.Lists;
+using SimpleTool.Network;
+using SimpleTool.Tools;
 using SimpleTool.Workers;
 
 namespace SimpleTool.ToolWindows
@@ -29,6 +32,7 @@ namespace SimpleTool.ToolWindows
                 fd.CheckFileExists = true;
                 fd.ShowDialog();
                 txtFilePath.Text = fd.FileName;
+                
             }
 
             if (!String.IsNullOrWhiteSpace(txtFilePath.Text))
@@ -72,7 +76,7 @@ namespace SimpleTool.ToolWindows
                         lblNamespace.Text = pUI.PluginWork.NameSpace;
                         lblClass.Text = pUI.PluginWork.ClassName;
                         lblFunction.Text = pUI.PluginWork.FunctionName;
-                        //this.Close();
+                        this.Close();
                     }
                 }
             }
@@ -86,6 +90,29 @@ namespace SimpleTool.ToolWindows
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(txtFilePath.Text))
+            {
+                Work work = new Work();
+                using (StreamReader sr = new StreamReader(txtFilePath.Text))
+                {
+                    work.AssemblyArguments = lblNamespace.Text;
+                    work.ClassName = lblClass.Text;
+                    work.FunctionName = lblFunction.Text;
+                    work.NameSpace = lblNamespace.Text;
+                    work.TimeSubmitted = DateTime.Now;
+                    work.AssemblyBytes = sr.ReadToEnd();
+                }
+                work.AssemblyArguments = "ALL";
+                WorkQueue.SubmitJob(work);
+            }
+            else
+            {
+                MessageBox.Show("No valid file found!");
+            }
         }
     }
 }

@@ -26,6 +26,7 @@ namespace SimpleTool.ToolWindows
         public bool GlobalWorkAssigned = false;
         public string ClientID = null;
         private bool GlobalPlugin = false;
+        public bool pluginSubmitted = false;
 
 
         public PluginUI()
@@ -125,6 +126,7 @@ namespace SimpleTool.ToolWindows
             }
             if (ClientConfig.Debug) Logger.SaveDebug($"{ClientID} | Plugin work assigned and sent....closing window!");
             this.Close();
+            pluginSubmitted = true;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
